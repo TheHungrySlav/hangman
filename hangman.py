@@ -19,9 +19,8 @@ def hangman():
 
     while len(word_letters) > 0 and lives > 0:
         # Letters Used
+        print(' ')
         print('You have',lives, 'lives remaining')
-        print(word)
-        print(word_letters)
         print('You have used these letters: ', ' '.join(used_letters))
         
         #Current word
@@ -34,15 +33,20 @@ def hangman():
             if user_letter in word_letters:
                 word_letters.remove(user_letter)
             elif user_letter not in word_letters:
-                lives -= lives    
+                lives = lives - 1
+    
         elif user_letter in used_letters:
             print('You used this letter, please choose another')
 
         else:
             print('Invalid Character')
 
+    if len(word_letters) == 0 and lives > 0:
+        print(word)
+        print('You win! ')
 
-    print(word_list)
-    print('You win! ')
+    elif len(word_letters) > 0 and lives == 0:
+        print('You Lose!')
+        print('Your word was: ',word)
 
 hangman()
